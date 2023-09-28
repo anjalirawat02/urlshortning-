@@ -1,6 +1,6 @@
-# This is the Project for url shortning.
-## The following will guide you to get used my Url Shortner..
-Welcome to the URL-shortener wiki! This is a site created in PHP that will shorten the given long URL to a URL with a 
+# URL Shortning Service
+## Follow these steps for creating Url Shortner
+Welcome to the URL-shortener Service. This is a site created in PHP that will shorten the given long URL to a URL with a 
 fewer alphanumeric characters randomly with a fixed size and while clicked will redirect to the original site...
 ### Download the xampp server from google
 It conatains the apache server and mysql so first start them by going in xampp control.
