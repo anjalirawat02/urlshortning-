@@ -1,21 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+</head>
+<body>
+<centre>
+<div style="padding:30px;">   
+    <h1>URL Shortener</h1>
+    <form method ="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        <input type="text" name="input_url" required style ="width:50%; padding:10px; font -size:1.5em;">
+        <input type="submit" name="url_sub" value="Shorten">
+    </form>
+</div>
+</centre>
+</body>
+</html>
 <?php
-$con = mysqli_connect('localhost','root','','anjali');
-if(isset($_GET)){
-   foreach($_GET as $key=>$val){
-      $l = mysqli_real_escape_string($con,$key);
-      $l = str_replace('/',',$l');
-   }
-   $res = mysqli_query($con,"select link from shorturl where short_link='$l'");
-   $count = mysqli_num_rows($res);
-   if($count>0){
-      $row=mysqli_fetch_assoc($res);
-      $link=$row['link'];
-      mysqli_query($con,"update shorturl set hit_count=hit_count+1 where short_link='$l'");
-      header('location:'.$link);
-      die();
-}
-if(isset($_GET['l'])){
-   
-}
+if(isset($_POST['url_sub'])){
 
+$conn=mysqli_connect("localhost","root","","anjali");
+if(!$conn){
+   echo "Connection error";
+   exit();
+}
+$orig_url=$_POST['input_url'];
+$rand= substr(md5(microtime()),rand(0,26),3);
+mysqli_query($conn,"INSERT INTO links (orig_url,short_code) VALUES ('$orig_url','$rand')");
+echo "your short link is: <br>";
+echo "<a href=http://localhost/anjali/k.php?"."$rand>localhost/anjali/k.php?$rand</a>";
+}
 ?>
